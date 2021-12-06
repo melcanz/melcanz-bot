@@ -1,0 +1,8 @@
+# folder
+node_modules
+# tmp/*
+
+# file
+package-lock.json
+database.json
+*.data.json
