@@ -18,9 +18,9 @@ let handler = async (m, { isOwner, text, isAdmin }) => {
   try {
     if (who.endsWith('g.us')) db.data.chats[who].isBanned = true
     else db.data.users[who].banned = true
-    m.reply(`successfully banned ${conn.getName(who) == undefined ? who : conn.getName(who)}.`)
+    m.reply(`berhasil banned ${conn.getName(who) == undefined ? who : conn.getName(who)}`)
   } catch (e) {
-    throw `not in database!`
+    throw `tidak ada didatabase!`
   }
 }
 handler.help = ['ban']

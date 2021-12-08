@@ -21,15 +21,14 @@ ${conn.getName(v.jid)}\n${v.jid} [${v.read_only ? 'keluar' : 'masuk'}]\n${db.dat
       stiker: false,
       viewonce: true,
     } : db.data.chats[v.jid].groupTime ? conn.msToDate(db.data.chats[v.jid].groupTime - new Date() * 1) : 'belum diatur'}
-${db.data.chats[v.jid].clear ? '✅' : '❌'} Auto Clear
-${db.data.chats[v.jid].autoread ? '✅' : '❌'} Auto Read 
+${db.data.chats[v.jid].clear ? '✅' : '❌'} otomatis hapus chat
+${db.data.chats[v.jid].autoread ? '✅' : '❌'} otomatis membaca pesan
+${db.data.chats[v.jid].broadcast ? '✅' : '❌'} pesan siaran
     `.trim()).join`\n\n`
-  conn.reply(m.chat, txt, m)
+  m.reply(txt)
 }
 handler.help = ['groups', 'grouplist']
 handler.tags = ['info']
 handler.command = /^(group(s|list))$/i
-
-handler.owner = true
 
 module.exports = handler
