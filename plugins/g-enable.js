@@ -28,6 +28,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     'antispam',
     'antitroli',
     'autoread',
+    'broadcast',
     'clear',
     'game',
     'gc',
@@ -190,6 +191,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         throw false
       }
       conn.callWhitelistMode = isEnable
+      break
+    case 'allowbc':
+    case 'bc':
+    case 'broadcast':
+      if (!isOwner) {
+        dfail('owner', m, conn)
+        throw false
+      }
+      chat.broadcast = isEnable
       break
     case 'anon':
       isAll = true
