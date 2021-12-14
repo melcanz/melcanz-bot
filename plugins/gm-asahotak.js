@@ -9,12 +9,12 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'belum dijawab!', conn.asahotak[id][0])
         throw false
     }
-    let res = await fetch(API('amel', '/game/asahotak', {}, 'apikey'))
+    let res = await fetch(API('amel', '/asahotak', {}, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
     if (!json.status) throw json
     let caption = `
-${json.result.soal}
+${json.soal}
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}ao untuk bantuan
@@ -23,7 +23,7 @@ Ketik ${usedPrefix}ao untuk bantuan
         await conn.sendButton(m.chat, caption, wm, 'Bantuan', '.ao', m),
         json, poin,
         setTimeout(async () => {
-            if (conn.asahotak[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.result.jawaban}*`, wm, 'Asah Otak', '.asahotak', conn.asahotak[id][0])
+            if (conn.asahotak[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, wm, 'Asah Otak', '.asahotak', conn.asahotak[id][0])
             delete conn.asahotak[id]
         }, timeout)
     ]

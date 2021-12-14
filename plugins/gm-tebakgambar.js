@@ -9,20 +9,20 @@ let handler = async (m, { conn, usedPrefix }) => {
     conn.reply(m.chat, 'belum dijawab!', conn.tebakgambar[id][0])
     throw false
   }
-  let res = await fetch(API('amel', '/game/tebakgambar', {}, 'apikey'))
+  let res = await fetch(API('amel', '/tebakgambar', {}, 'apikey'))
   if (!res.ok) throw eror
   let json = await res.json()
   if (!json.status) throw json
   let caption = `
-    ${json.result.deskripsi}
+    ${json.deskripsi}
 Waktu *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}hint untuk bantuan
 `.trim()
   conn.tebakgambar[id] = [
-    await conn.sendButtonImg(m.chat, json.result.img, caption, wm, 'Bantuan', '.hint', m),
+    await conn.sendButtonImg(m.chat, json.img, caption, wm, 'Bantuan', '.hint', m),
     json, poin,
     setTimeout(async () => {
-      if (conn.tebakgambar[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.result.jawaban}*`, wm, 'Tebak Gambar', '.tebakgambar', conn.tebakgambar[id][0])
+      if (conn.tebakgambar[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, wm, 'Tebak Gambar', '.tebakgambar', conn.tebakgambar[id][0])
       delete conn.tebakgambar[id]
     }, timeout)
   ]

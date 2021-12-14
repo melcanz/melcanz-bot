@@ -2,25 +2,25 @@ let fetch = require('node-fetch')
 
 let handler = async (m, { conn, command, args, usedPrefix }) => {
     if (!args[0]) throw `uhm.. urlnya mana?\n\npenggunaan:\n${usedPrefix + command} url\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/COaLQGnJFUn/`
-    if (!/https?:\/\/(www\.)?instagram\.com\/(p|reel|tv|stories)/i.test(args[0])) throw `url salah! yang bisa post, reels, tv and story`
-    if (/https?:\/\/(www\.)?instagram\.com\/(stories)/i.test(args[0])) {
+    if (!/https?:\/\/(www\.)?instagram\.com\/(.*\/)?(p|reel|tv|stories)/i.test(args[0])) throw `url salah! yang bisa post, reels, tv and story`
+    if (/https?:\/\/(www\.)?instagram\.com\/(.*\/)?(stories)/i.test(args[0])) {
         let res = await fetch(API('amel', '/igs', { url: args[0] }, 'apikey'))
         if (!res.ok) throw eror
         let json = await res.json()
         if (!json.status) throw json
         await m.reply(wait)
-        for (let { url, type } of json.result.data) {
+        for (let { url, type } of json.data) {
             await conn.sendFile(m.chat, url, 'igs' + (type == 'jpg' ? '.jpg' : '.mp4'), '', m)
         }
     }
-    if (/https?:\/\/(www\.)?instagram\.com\/(p|reel|tv)/i.test(args[0])) {
-        let res = await fetch(API('amel', '/igdl', { url: args[0] }, 'apikey'))
+    if (/https?:\/\/(www\.)?instagram\.com\/(.*\/)?(p|reel|tv)/i.test(args[0])) {
+        let res = await fetch(API('amel', '/ig', { url: args[0] }, 'apikey'))
         if (!res.ok) throw eror
         let json = await res.json()
         if (!json.status) throw json
         await m.reply(wait)
-        for (let { downloadUrl, type } of json.result) {
-            await conn.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '', m)
+        for (let { url, fileType } of json.data) {
+            await conn.sendFile(m.chat, url, 'ig' + (fileType == 'image' ? '.jpg' : '.mp4'), '', m)
         }
     }
 }

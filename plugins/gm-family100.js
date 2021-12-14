@@ -8,14 +8,14 @@ async function handler(m) {
         this.sendButton(m.chat, 'Masih ada kuis yang belum terjawab!', wm, 'Nyerah', 'nyerah', this.game[id].msg)
         throw false
     }
-    let res = await fetch(API('amel', '/game/family100', {}, 'apikey'))
+    let res = await fetch(API('amel', '/family100', {}, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
     if (!json.status) throw json
     let caption = `
-*soal:* ${json.result.soal}
+*soal:* ${json.soal}
 
-terdapat *${json.result.jawaban.length}* jawaban${json.result.jawaban.find(v => v.includes(' ')) ? `
+terdapat *${json.jawaban.length}* jawaban${json.jawaban.find(v => v.includes(' ')) ? `
 (beberapa jawaban terdapat spasi)
 
 +500 XP tiap jawaban benar
@@ -25,7 +25,7 @@ terdapat *${json.result.jawaban.length}* jawaban${json.result.jawaban.find(v => 
         id,
         msg: await this.sendButton(m.chat, caption, wm, 'nyerah', 'nyerah', m),
         ...json,
-        terjawab: Array.from(json.result.jawaban, () => false),
+        terjawab: Array.from(json.jawaban, () => false),
         winScore,
     }
 }

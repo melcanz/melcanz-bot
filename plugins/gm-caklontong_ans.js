@@ -11,12 +11,12 @@ handler.before = async function (m) {
     if (m.quoted.id == this.caklontong[id][0].id) {
         let json = JSON.parse(JSON.stringify(this.caklontong[id][1]))
         if (['.calo', ''].includes(m.text)) return !0
-        if (m.text.toLowerCase() == json.result.jawaban.toLowerCase()) {
+        if (m.text.toLowerCase() == json.jawaban.toLowerCase()) {
             global.db.data.users[m.sender].exp += this.caklontong[id][2]
-            await this.sendButton(m.chat, benar + ` +${this.caklontong[id][2]} XP\n${json.result.deskripsi}`, wm, 'Cak Lontong', '.caklontong', m)
+            await this.sendButton(m.chat, benar + ` +${this.caklontong[id][2]} XP\n${json.deskripsi}`, wm, 'Cak Lontong', '.caklontong', m)
             clearTimeout(this.caklontong[id][3])
             delete this.caklontong[id]
-        } else if (similarity(m.text.toLowerCase(), json.result.jawaban.toLowerCase().trim()) >= threshold) m.reply(dikit)
+        } else if (similarity(m.text.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) m.reply(dikit)
         else m.reply(salah)
     }
     return !0

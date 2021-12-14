@@ -11,12 +11,12 @@ handler.before = async function (m) {
     if (m.quoted.id == this.tebaklagu[id][0].id) {
         let json = JSON.parse(JSON.stringify(this.tebaklagu[id][1]))
         if (['.cek', ''].includes(m.text)) return !0
-        if (m.text.toLowerCase() == json.result.judul.split('(')[0].split('-')[0].toLowerCase().trim()) {
+        if (m.text.toLowerCase() == json.judul.split('(')[0].split('-')[0].toLowerCase().trim()) {
             global.db.data.users[m.sender].exp += this.tebaklagu[id][2]
             await this.sendButton(m.chat, benar + ` +${this.tebaklagu[id][2]} XP`, wm, 'Tebak Lagu', '.tebaklagu', m)
             clearTimeout(this.tebaklagu[id][3])
             delete this.tebaklagu[id]
-        } else if (similarity(m.text.toLowerCase(), json.result.judul.split('(')[0].split('-')[0].toLowerCase().trim()) >= threshold) m.reply(dikit)
+        } else if (similarity(m.text.toLowerCase(), json.judul.split('(')[0].split('-')[0].toLowerCase().trim()) >= threshold) m.reply(dikit)
         else m.reply(salah)
     }
     return !0

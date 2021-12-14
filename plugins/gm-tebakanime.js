@@ -9,7 +9,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     conn.reply(m.chat, 'belum dijawab!', conn.tebakanime[id][0])
     throw false
   }
-  let res = await fetch(API('amel', '/game/tebakanime', {}, 'apikey'))
+  let res = await fetch(API('amel', '/tebakanime', {}, 'apikey'))
   if (!res.ok) throw eror
   let json = await res.json()
   if (!json.status) throw json

@@ -10,9 +10,9 @@ module.exports = {
         let text = m.text.toLowerCase().replace(/[^\w\s\-]+/, '')
         let isSurrender = /^((me)?nyerah|surr?ender)$/i.test(m.text)
         if (!isSurrender) {
-            let index = room.result.jawaban.findIndex(v => v.toLowerCase().replace(/[^\w\s\-]+/, '') === text)
+            let index = room.jawaban.findIndex(v => v.toLowerCase().replace(/[^\w\s\-]+/, '') === text)
             if (index < 0) {
-                if (Math.max(...room.result.jawaban.filter((_, index) => !room.terjawab[index]).map(jawaban => similarity(jawaban, text))) >= threshold) m.reply(dikit)
+                if (Math.max(...room.jawaban.filter((_, index) => !room.terjawab[index]).map(jawaban => similarity(jawaban, text))) >= threshold) m.reply(dikit)
                 return !0
             }
             if (room.terjawab[index]) return !0
@@ -22,13 +22,13 @@ module.exports = {
         }
         let isWin = room.terjawab.length === room.terjawab.filter(v => v).length
         let caption = `
-*soal:* ${room.result.soal}
+*soal:* ${room.soal}
 
-terdapat *${room.result.jawaban.length}* jawaban${room.result.jawaban.find(v => v.includes(' ')) ? `
+terdapat *${room.jawaban.length}* jawaban${room.jawaban.find(v => v.includes(' ')) ? `
 (beberapa jawaban terdapat spasi)
 `: ''}
 ${isWin ? `*SEMUA JAWABAN TERJAWAB*` : isSurrender ? '*MENYERAH!*' : ''}
-${Array.from(room.result.jawaban, (jawaban, index) => {
+${Array.from(room.jawaban, (jawaban, index) => {
             return isSurrender || room.terjawab[index] ? `(${index + 1}) ${jawaban} ${room.terjawab[index] ? '@' + room.terjawab[index].split`@`[0] : ''}`.trim() : false
         }).filter(v => v).join('\n')}
 

@@ -9,11 +9,11 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'belum dijawab!', conn.tebaklagu[id][0])
         throw false
     }
-    let res = await fetch(API('amel', '/game/tebakkata', { id: conn.pickRandom(db.data.settings[conn.user.jid].playlist) }, 'apikey'))
+    let res = await fetch(API('amel', '/tebaklagu', { id: conn.pickRandom(db.data.settings[conn.user.jid].playlist) }, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
     if (!json.status) throw json
-    if (json.result.preview == null) {
+    if (json.preview == null) {
         await conn.sendButton(m.chat, 'audio tidak ditemukan!', wm, 'Tebak Lagu', '.tebaklagu', m)
         throw 0
     }
@@ -25,11 +25,11 @@ Ketik ${usedPrefix}cek untuk bantuan
         await conn.sendButton(m.chat, caption, wm, 'Bantuan', '.cek', m),
         json, poin,
         setTimeout(async () => {
-            if (conn.tebaklagu[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.result.judul.split('(')[0].split('-')[0].trim()}*`, wm, 'Tebak Lagu', `${usedPrefix}tebaklagu`, conn.tebaklagu[id][0])
+            if (conn.tebaklagu[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.judul.split('(')[0].split('-')[0].trim()}*`, wm, 'Tebak Lagu', `${usedPrefix}tebaklagu`, conn.tebaklagu[id][0])
             delete conn.tebaklagu[id]
         }, timeout)
     ]
-    await conn.sendFile(m.chat, json.result.preview, 'eror.mp3', caption, m, 0, { mimetype: 'audio/mp4' })
+    await conn.sendFile(m.chat, json.preview, 'eror.mp3', caption, m, 0, { mimetype: 'audio/mp4' })
 }
 handler.help = ['tebaklagu']
 handler.tags = ['game']

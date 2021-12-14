@@ -6,9 +6,11 @@ global.mods = []
 
 global.APIs = {
   amel: 'https://melcanz.com',
+  amell: 'https://melcanz.net',
 }
 global.APIKeys = {
-  'https://melcanz.net': 'apikeymu',
+  'https://melcanz.com': 'beli bang',
+  'https://melcanz.net': 'trial',
 }
 
 global.packname = 'ig @ariffb.id @melcanz.io'
