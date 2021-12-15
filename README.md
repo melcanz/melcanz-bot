@@ -1,12 +1,12 @@
 <p align="center">
-	<img src="https://telegra.ph/file/18b6f5487ffdcc5aa93a5.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
+	<img src="https://telegra.ph/file/8d6d446b6820a23916cfc.png" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
 <h1 align="center">melcanz-bot</h1>
 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/melcanz/melcanz-bot)
 
-[![Grup WhatsApp](https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/GVwpKf83s42D1CnIfDW19G)
+[![Grup WhatsApp](https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/EO4J713OkyVBlZDjBFgbLq)
 
 ## UNTUK PENGGUNA WINDOWS/VPS/RDP
 
@@ -34,7 +34,7 @@ $ pkg install git
 $ git clone https://github.com/melcanz/melcanz-bot.git
 $ cd melcanz-bot
 $ npm i
-$ npm start
+$ node .
 ```
 ---------
 ## UNTUK PENGGUNA HEROKU
@@ -65,8 +65,12 @@ Digunakan untuk [heroku](https://heroku.com/) atau pindai melalui situs web
 
 ### `--db <json-server-url>`
 
-menggunakan db eksternal alih-alih db lokal, disarankan menggunakan mongodb
-contoh Server `https://json-server.nurutomo.repl.co/`
+menggunakan db eksternal alih-alih db lokal, **disarankan** menggunakan mongodb
+
+contoh server dengan mongodb `mongodb+srv://<username>:<password>@name-of-your-db.thhce.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+
+contoh server dengan repl `https://json-server.nurutomo.repl.co/`
+
 kode: `https://repl.it/@Nurutomo/json-server`
 
 `node . --db 'https://json-server.nurutomo.repl.co/'`
@@ -116,7 +120,7 @@ conn.logger.level = 'debug'
 ```
 
 ---------
-<a href="https://melcanz.com/"><img src="https://telegra.ph/file/18b6f5487ffdcc5aa93a5.jpg" width="100" height="100"></a> | [![Melcanz](https://github.com/melcanz.png?size=100)](https://github.com/melcanz) | [![Ariffb](https://github.com/ariffb25.png?size=100)](https://github.com/ariffb25) 
+<a href="https://melcanz.com/"><img src="https://telegra.ph/file/8d6d446b6820a23916cfc.png" width="100" height="100"></a> | [![Melcanz](https://github.com/melcanz.png?size=100)](https://github.com/melcanz) | [![Ariffb](https://github.com/ariffb25.png?size=100)](https://github.com/ariffb25) 
 ----|----|----
-[Melcanz API](https://melcanz.com/) | [Melcanz](https://github.com/melcanz) | [Ariffb](https://github.com/ariffb25) 
-Powered by Melcanz API | Owner of Melcanz API | punya amel
+[Melcanz Rest Api](https://melcanz.com/) | [Melcanz](https://github.com/melcanz) | [Ariffb](https://github.com/ariffb25) 
+Powered by Melcanz API | Owner of Melcanz Rest Api | Dev of Melcanz Rest Api & punya Amel
