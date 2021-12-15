@@ -2,7 +2,6 @@ let fs = require('fs')
 let chalk = require('chalk')
 
 global.owner = ['6283128734012', '6287755080455']
-global.mods = []
 
 global.APIs = {
   amel: 'https://melcanz.com',

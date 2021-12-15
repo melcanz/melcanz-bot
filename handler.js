@@ -1,6 +1,7 @@
 let simple = require('./lib/simple')
 let util = require('util')
-let fetch = require('node-fetch')
+let fs = require('fs')
+let chalk = require('chalk')
 let { MessageType } = require('@adiwajshing/baileys')
 
 const isNumber = x => typeof x === 'number' && !isNaN(x)
@@ -163,7 +164,6 @@ module.exports = {
 
       let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isOwner = isROwner || m.fromMe
-      let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isPrems = isROwner || db.data.users[m.sender].premium
       let groupMetadata = m.isGroup ? this.chats.get(m.chat).metadata || await this.groupMetadata(m.chat) : {} || {}
       let participants = m.isGroup ? groupMetadata.participants : [] || []
@@ -245,10 +245,6 @@ module.exports = {
           }
           if (plugin.owner && !isOwner) { // no owner / yang numpang
             fail('owner', m, this)
-            continue
-          }
-          if (plugin.mods && !isMods) { // moderator
-            fail('mods', m, this)
             continue
           }
           if (plugin.premium && !isPrems) { // premium
@@ -466,7 +462,6 @@ global.dfail = (type, m, conn) => {
   let msg = {
     rowner: 'perintah ini hanya bisa digunakan oleh _*Pemilik Bot*_',
     owner: 'perintah ini hanya bisa digunakan oleh _*Owner Bot*_',
-    mods: 'perintah ini hanya bisa digunakan oleh _*Moderator*_',
     premium: 'perintah ini hanya untuk pengguna _*Premium*_',
     group: 'perintah ini hanya bisa digunakan digrup',
     private: 'perintah ini hanya bisa digunakan dichat pribadi',
@@ -478,8 +473,6 @@ global.dfail = (type, m, conn) => {
   if (msg) return m.reply(msg)
 }
 
-let fs = require('fs')
-let chalk = require('chalk')
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
   fs.unwatchFile(file)
