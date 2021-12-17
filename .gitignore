@@ -1,6 +1,6 @@
 # folder
 node_modules
-# tmp/*
+tmp/*
 
 # file
 package-lock.json

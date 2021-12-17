@@ -1,11 +1,11 @@
 let handler = m => m
 
-handler.before = m => {
+handler.before = (m, { conn }) => {
   let user = db.data.users[m.sender]
   if (user.afk > -1) {
     m.reply(`
 kamu berhenti AFK${user.afkReason ? ' setelah ' + user.afkReason : ''}
-selama ${this.clockString(new Date - user.afk)}
+selama ${conn.clockString(new Date - user.afk)}
 `.trim())
     user.afk = -1
     user.afkReason = ''
@@ -20,11 +20,10 @@ selama ${this.clockString(new Date - user.afk)}
     m.reply(`
 jangan tag dia!
 dia lagi AFK ${reason ? 'dengan alasan ' + reason : 'tanpa alasan'}
-selama ${this.clockString(new Date - afkTime)}
+selama ${conn.clockString(new Date - afkTime)}
 `.trim())
   }
   return !0
 }
 
 module.exports = handler
-
