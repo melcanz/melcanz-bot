@@ -1,7 +1,7 @@
 let fetch = require('node-fetch')
 
 let handler = async (m, { conn }) => {
-    let res = await fetch(API('amell', '/game/dadu', {}, 'apikey'))
+    let res = await fetch(API('amel', '/dadu', {}, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
     if (json.result != 200) throw json
