@@ -5,11 +5,9 @@ global.owner = ['6283128734012', '6287755080455']
 
 global.APIs = {
   amel: 'https://melcanz.com',
-  amell: 'https://melcanz.net',
 }
 global.APIKeys = {
-  'https://melcanz.com': 'beli bang',
-  'https://melcanz.net': 'trial',
+  'https://melcanz.com': 'beli bang'
 }
 
 global.packname = 'ig @ariffb.id @melcanz.io'
