@@ -57,7 +57,7 @@ let handler = async (m, { conn, usedPrefix: _p, text, isOwner, command }) => {
      * @param {Array} 
      * kalo ga ada didaftar ini ga bisa dipanggil, jadi harus diisi
      */
-    let arrayMenu = ['list', 'all', 'absen', 'audio', 'database', 'download', 'fun', 'grup', 'games', 'info', 'internet', 'jadibot', 'kerang ajaib', 'nulis', 'stiker', 'tools', 'tanpa kategori', 'xp', 'owner']
+    let arrayMenu = ['list', 'all', 'absen', 'audio', 'database', 'download', 'fun', 'maker', 'grup', 'games', 'info', 'internet', 'jadibot', 'kerang ajaib', 'nulis', 'stiker', 'tools', 'tanpa kategori', 'xp', 'owner']
     if (!arrayMenu.includes(teks)) teks = 'list' // kalo teks da ada di arrayMenu maka bakal nampilin list
     // buat 1 per 1 sesuai yang ada di arrayMenu
     if (teks == 'all') tags = {
@@ -67,6 +67,7 @@ let handler = async (m, { conn, usedPrefix: _p, text, isOwner, command }) => {
       'database': 'Database',
       'download': 'Downloader',
       'fun': 'fun',
+      'maker': 'Maker Menu',
       'game': `Games`,
       'group': 'Grup',
       'info': 'Info',
@@ -98,6 +99,9 @@ let handler = async (m, { conn, usedPrefix: _p, text, isOwner, command }) => {
     }
     if (teks == 'fun') tags = {
       'fun': 'fun',
+    }
+    if (teks == 'maker') tags = {
+      'maker': 'Maker Menu',
     }
     if (teks == 'games') {
       if (!db.data.settings[conn.user.jid].game) {
