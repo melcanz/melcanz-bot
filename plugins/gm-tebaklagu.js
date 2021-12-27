@@ -1,3 +1,4 @@
+let fetch = require('node-fetch')
 let timeout = 120000
 let poin = 500
 

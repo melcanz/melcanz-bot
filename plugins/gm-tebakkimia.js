@@ -14,7 +14,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let json = await res.json()
     if (!json.status) throw json
     let caption = `
-Nama unsur dari lambang ${json.result.lambang} adalah...
+Nama unsur dari lambang ${json.lambang} adalah...
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}teki untuk bantuan
@@ -24,7 +24,7 @@ Bonus: ${poin} XP
         await conn.sendButton(m.chat, caption, wm, 'Bantuan', '.teki', m),
         json, poin,
         setTimeout(async () => {
-            if (conn.tebakkimia[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.result.unsur}*`, wm, 'Tebak Kimia', '.tebakkimia', conn.tebakkimia[id][0])
+            if (conn.tebakkimia[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.unsur}*`, wm, 'Tebak Kimia', '.tebakkimia', conn.tebakkimia[id][0])
             delete conn.tebakkimia[id]
         }, timeout)
     ]

@@ -7,7 +7,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
     let json = await res.json()
     if (!json.status) throw json
     await m.reply(wait)
-    await conn.sendFile(m.chat, json.result.link, json.result.nama, wm, m)
+    await conn.sendFile(m.chat, json.link, json.nama, wm, m)
 }
 handler.help = ['mediafire'].map(v => v + ' <url>')
 handler.tags = ['download']
