@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/melcanz/melcanz-bot#readme",
   "dependencies": {
-    "@adiwajshing/baileys": "github:melcanz/baileys",
+    "@adiwajshing/baileys": "github:melcanz/Baileys",
     "awesome-phonenumber": "^2.62.1",
     "cfonts": "^2.9.3",
     "chalk": "^4.1.1",
