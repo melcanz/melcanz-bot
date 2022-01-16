@@ -16,8 +16,8 @@ async function handler(m, { command, conn, text }) {
 	let other = room.other(who)
   var name
   if (text) name = text
-  else name = conn.getName(who)
-	var number = m.sender.split('@')[0]
+  else name = conn.getName(m.sender)
+	var number = who.split('@')[0]
 	if (other) this.sendMessage(other, `Partner mengirimkan kontak kepadamu`, MessageType.text)
 	if (other) this.sendContact(other, number, name, m)
 }
